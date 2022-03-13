@@ -1,27 +1,28 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<p>Hello you are on the  {{ msg }} page</p>
-
-{% if number > 10 %}
-<p>Number is greater than 10</p>
-{% else %}
-<p>Number is less than 10</p>
-{% endif %}
-
-<h1>Projects Template</h1>
-<p>fadf kjalskjf lasj flajsdlk flksdjl fkasdlkf jklasdjfklajds ljfkalsdjlk lkkjak nsdkjfn akjsndkjfanlskdnfl
-    dvasdvasdvasdvasdvsd
-    sadvasdvasdvdasdvdsasdvdsasdvdavasdvdvdsa jdkhfkj jsdk fjklhfasjd fjkh kjh kasdhjk hkh
-    sakjsh kjkhklsd ljh;kjh;ijwhj hkjhsdkf owuhu jkhawle ansjkdlfnlkwel lfawef wE</p>
-
-<hr>
-
-<h2>Projects:</h2>
-<ul>
-    {% for project in projects%}
-    <li>Title: <a href="{% url 'project' project.id %}">{{project.title}}</a>  ---  {{project.description}}</li>
+<h1>Projects:</h1>
+<table>
+    <tr>
+        <th>Project</th>
+        <th>Positive Votes</th>
+        <th>Votes</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for project in projects %}
+    <tr>
+        <td>{{project.title}}</td>
+        <td>{{project.vote_ratio}}%</td>
+        <td>{{project.vote_total}}</td>
+        <td>{{project.created}}</td>
+        <td><a href="{% url 'project' project.id %}">View</a></td>
+        <td><a href="{% url 'update-project' project.id %}">Edit</a></td>
+        <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
+
 
 {% endblock content %}
